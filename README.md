@@ -38,5 +38,5 @@ A full-stack Node.js + React application for uploading, viewing, editing, valida
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
+git clone <https://github.com/richardjim/csv-management-app.git>
 cd csv-management-app

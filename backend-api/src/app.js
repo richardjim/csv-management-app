@@ -3,7 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const path = require('path');
-const csvController = require('./controllers/csvController');
+const csvRoutes = require('./routes/csvRoutes');
 
 const app = express();
 
@@ -14,26 +14,22 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static frontend build (Render/Docker compatible)
 app.use(express.static(path.join(__dirname, '../public')));
 
-// Serve uploads directory
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // API routes
-app.use('/api/csv', csvController);
+app.use('/api/csv', csvRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
-// Fallback route for SPA frontend
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
-// Global error handler
 app.use((error, req, res, next) => {
   console.error('Error:', error);
   res.status(500).json({ 

@@ -193,27 +193,6 @@ To deploy yourself, use services like Render, Heroku, Vercel (frontend), or Dock
 
 ---
 
-## Troubleshooting & Tips
-
-* **`Router.use() requires a middleware function but got an Object`**: Ensure you mount the router, not the controller. Example in `app.js`:
-
-```js
-const csvRoutes = require('./routes/csvRoutes');
-app.use('/api/csv', csvRoutes);
-```
-
-* **Large CSVs**: For very large files, stream parsing and streaming export are recommended.
-
-* **CORS**: If frontend and backend run on different ports, enable CORS on the backend and set correct `REACT_APP_API_BASE_URL`.
-
----
-
-## Contributing
-
-Contributions welcome. Open an issue or PR with a clear description of the change and tests/examples when applicable.
-
----
-
 ## License
 
 MIT
